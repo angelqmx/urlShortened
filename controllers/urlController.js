@@ -12,7 +12,7 @@ exports.createUrl = function(req, res) {
 
 exports.createUrlBulk = function(req, res) {
 	let result = [];
-    console.log(req.body);
+   
 	for (var i = req.body.urls.length - 1; i >= 0; i--) {
 	   let u = req.body.urls[i];
 	   let short= {
