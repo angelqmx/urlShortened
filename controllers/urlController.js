@@ -10,6 +10,23 @@ exports.createUrl = function(req, res) {
     return res.send(short.shortUrl); 
 };
 
+exports.createUrlBulk = function(req, res) {
+	let result = [];
+    console.log(req.body);
+	for (var i = req.body.urls.length - 1; i >= 0; i--) {
+	   let u = req.body.urls[i];
+	   let short= {
+	    	"url": u, 
+	    	"shortUrl":makeShort()
+       }
+       result.push(short);
+	}
+
+	
+    urls = urls.concat(result);
+    return res.send(result); 
+};
+
 exports.getUrls = function(req, res) {
     return res.send(urls); 
 };
