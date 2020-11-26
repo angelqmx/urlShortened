@@ -3,7 +3,7 @@ var urls=[];
 
 exports.createUrl = function(req, res) {
 	let short={
-    	"url": res.url, 
+    	"url": req.body.url, 
     	"shortUrl":makeShort()
     }
     urls.push(short);
@@ -16,9 +16,11 @@ exports.getUrls = function(req, res) {
 
 
 exports.redirect = function(req, res) {
+	
 	let find = urls.find((u)=>{
-		return u.shortUrl === req.params.short
-	})
+		return u.shortUrl === req.params.short;
+	});
+	
     res.redirect(301, find.url);
 };
 
