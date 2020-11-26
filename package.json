@@ -1,0 +1,22 @@
+{
+  "name": "urlshortened",
+  "version": "1.0.0",
+  "description": "Return Short url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelqmx/urlShortened.git"
+  },
+  "author": "Angel Quijano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelqmx/urlShortened/issues"
+  },
+  "homepage": "https://github.com/angelqmx/urlShortened#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
