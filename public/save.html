@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#send").click(function(){
+     $.post({
+          url: "/api/url",
+          data: {url: $("#url").val()
+             },
+          
+          success:function(result){
+            alert("success");
+            $("#result").html( "Short url:"+result )
+          }
+        });
+  });
+});
+</script>
+</head>
+<body>
+
+<input type="url" name="url" id="url">
+<input type="button" name="send" id="send" value='Send'>
+<div id="result"></div>
+</body>
+</html>

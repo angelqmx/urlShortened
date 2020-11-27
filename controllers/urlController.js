@@ -47,7 +47,7 @@ exports.redirect = function(req, res) {
 	if(!find)
 		throw new Error("URL not found");
 	
-    res.redirect(301, find.url);
+    res.redirect(301, getValidUrl(find.url));
 };
 
 function makeShort() {
@@ -69,3 +69,19 @@ function validURL(str) {
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
   return !!pattern.test(str);
 }
+
+
+
+function getValidUrl (url) {
+   
+    let newUrl = url.trim().replace(/\s/g, "");
+
+    if(/^(:\/\/)/.test(newUrl)){
+        return `http${newUrl}`;
+    }
+    if(!/^(f|ht)tps?:\/\//i.test(newUrl)){
+        return `http://${newUrl}`;
+    }
+
+    return newUrl;
+};
