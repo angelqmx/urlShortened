@@ -2,6 +2,9 @@
 var urls=[];
 
 exports.createUrl = function(req, res) {
+	if(!validURL(req.body.url))
+		throw new Error("Invalid url");
+
 	let short={
     	"url": req.body.url, 
     	"shortUrl":makeShort()
@@ -15,6 +18,10 @@ exports.createUrlBulk = function(req, res) {
    
 	for (var i = req.body.urls.length - 1; i >= 0; i--) {
 	   let u = req.body.urls[i];
+
+	   if(!validURL(u))
+		throw new Error("Invalid url");
+
 	   let short= {
 	    	"url": u, 
 	    	"shortUrl":makeShort()
@@ -37,6 +44,8 @@ exports.redirect = function(req, res) {
 	let find = urls.find((u)=>{
 		return u.shortUrl === req.params.short;
 	});
+	if(!find)
+		throw new Error("URL not found");
 	
     res.redirect(301, find.url);
 };
@@ -49,4 +58,14 @@ function makeShort() {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
    }
    return result;
+}
+
+function validURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
 }
