@@ -61,4 +61,7 @@
 
 ## Testing
 
-  *Open the url http://localhost:3000/[short] using any short string in the system.
+  * Open the url http://localhost:3000/[short] using any short string in the system.
+  * Save url http://localhost:3000/save.html.
+  * Bulk save url http://localhost:3000/bulk.html.
+  * View url http://localhost:3000/view.html.
